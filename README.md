@@ -42,4 +42,3 @@ print(res.inaccuracy)
 {'reasoning': 'Two direct contradictions found: 1) The document states both 10 and 12 employees, with the latter figure contradicting the original fact. 2) The document mentions $100,000 revenue multiple times but concludes with $120,000, contradicting the earlier statements and the original fact.', 'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and operates with a compact team of 10 employees.', 'new': 'Even with a team of only 12, the company manages to keep overhead costs low'}, {'original': 'Fict.AI generates a revenue of $100,000 through their advanced AI solutions.', 'new': 'With a noteworthy revenue of $120,000 under its belt, the company is all set to steer the future of AI technology'}]}
 """
 ```
-
