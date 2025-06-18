@@ -8,14 +8,15 @@ DOC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "doc_samples")
 class TestUDQ:
 
     def test_run_document_quality(self):
-        dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.pdf")
+        dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
 
         res = dq.run()
+        breakpoint()
         assert res.profile is not None
 
     def test_compare(self):
         reference_dq = DocumentQuality(file_path=f"{DOC_DIR}/base_description.pdf")
-        reference_profile = reference_dq.get_document_profile(reference_dq.file_path)
+        reference_profile = reference_dq.get_document_profile()
         dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
         res = dq.compare(reference_profile=reference_profile)
 
