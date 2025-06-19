@@ -8,17 +8,14 @@ authors = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "anthropic>=0.53.0",
     "dotenv>=0.9.9",
+    "pdoc>=15.0.4",
     "pre-commit>=4.2.0",
     "pydantic>=2.11.5",
     "pydantic-ai>=0.2.16",
     "pymupdf>=1.26.0",
     "pytest>=8.4.0",
 ]
-
-[project.scripts]
-lightudq = "lightudq:main"
 
 [build-system]
 requires = ["hatchling"]

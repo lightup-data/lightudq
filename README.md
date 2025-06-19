@@ -1,10 +1,9 @@
-# lightudq
 
 A Python library for unstructured data quality assessment. It provides tools to evaluate the quality of unstructured
 documents, including checks for consistency, completeness, accuracy and PII contamination. The library can be used to
 analyze documents such as PDFs, text files, and markdowns.
 
-# Installation
+## Installation
 ```python
 pip install lightudq
 ```

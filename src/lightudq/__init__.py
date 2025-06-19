@@ -1,2 +1,3 @@
-def main() -> None:
-    print("Hello from lightudq!")
+"""
+.. include:: ../../README.md
+"""

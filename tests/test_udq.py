@@ -1,6 +1,6 @@
 import os
 
-from lightudq.udq import DocumentQuality
+from lightudq.document_quality import DocumentQuality
 
 DOC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "doc_samples"))
 
@@ -11,7 +11,6 @@ class TestUDQ:
         dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
 
         res = dq.run()
-        breakpoint()
         assert res.profile is not None
 
     def test_compare(self):
