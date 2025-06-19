@@ -61,7 +61,7 @@
                     <h1 class="modulename">
 <a href="./../lightudq.html">lightudq</a><wbr>.prompts    </h1>
 
-
+                
                         <input id="mod-prompts-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-prompts-view-source"><span>View Source</span></label>
@@ -209,11 +209,11 @@
 <input id="QNA_EXTRACT_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="QNA_EXTRACT_PROMPT-view-value"></label><span class="default_value">&#39;You are an advanced text analysis system designed to extract key\ninformation from documents in the form of question-answer pairs. Your task is to analyze the given document\nand create up to 5 question-answer pairs based on the information directly addressed in the text.\n\nFirst, carefully read the following document:\n\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\nThen extract key questions and their corresponding answers from the document.  The answer in each question-answer pair\nshould be self-contained and fully comprehensible without needing to refer back to the question or the original document.\n\nAfter completing your analysis, please format your output as a JSON object that adheres to the following\nschema:\n\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n\n\nRemember:\n- The answer in each question-answer pair  should be self-contained and fully comprehensible without needing to refer\n back to the question or the original document.\n- Your final output must be strictly in the JSON format specified by the output_schema.\n- Double-check your JSON structure before finalizing your response.\n- Do not output any reasoning or justifications\n&#39;</span>
 
-
+        
     </div>
     <a class="headerlink" href="#QNA_EXTRACT_PROMPT"></a>
-
-
+    
+    
 
                 </section>
                 <section id="MISSING_QUESTIONS_PROMPT">
@@ -222,11 +222,11 @@
 <input id="MISSING_QUESTIONS_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="MISSING_QUESTIONS_PROMPT-view-value"></label><span class="default_value">&#39;Check if the following document answers the following questions.\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\n&lt;questions&gt;\n{questions}\n&lt;/questions&gt;\n\nOutput just the list of questions (if any) not answered by the document, with the following output schema.\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n&#39;</span>
 
-
+        
     </div>
     <a class="headerlink" href="#MISSING_QUESTIONS_PROMPT"></a>
-
-
+    
+    
 
                 </section>
                 <section id="FACT_CHECK_PROMPT">
@@ -235,11 +235,11 @@
 <input id="FACT_CHECK_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="FACT_CHECK_PROMPT-view-value"></label><span class="default_value">&#39;You are a precise and thorough fact-checker. Your task is to verify if a given document directly\ncontradicts a set of provided facts. You must ignore any facts that are not present in the document.\nHere is the document to analyze:\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\nHere are the facts to check:\n&lt;facts&gt;\n{facts}\n&lt;/facts&gt;\n\nHere is the schema for the JSON output you must produce:\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n\nPlease follow these steps:\n\n1. Carefully read the document provided.\n2. For each fact in the list of facts:\n   a. Determine if the document directly contradicts the fact. Note that :\n        - Any extra information in the fact not present in the document should not be considered a contradiction and\n        be ignored.\n        - If the document describes a different procedure to accomplish the same task in the fact, this should not\n        constitute a contradiction unless the document explicitly states that the described procedure is the only way\n        to accomplish the task\n   b. If fact is not contradicted by the document, ignore the fact.\n   c. If fact is contradicted, capture it in output\n2. For each fact in the list of facts:\n   a. Determine if the document directly contradicts the fact. Any extra information in the fact not present in the\n   document should not be considered a contradiction and be ignored.\n   b. If fact is not contradicted by the document, ignore the fact.\n   c. If fact is contradicted, capture it in output\n\n3. Construct your output in the JSON format specified by the output_schema.\n\nExamples:\nfact: &#34;an apple is a fruit&#34;\ndocument: &#34;an orange is a fruit&#34;.\nresult: no contradiction\n\nfact: &#34;an apple is a fruit and can be eaten after cutting by knife&#34;\ndocument: &#34;an apple is a fruit&#34;\nresult: no contradiction\n\nfact: &#34;an apple is a fruit and can be eaten after cutting by knife&#34;\ndocument: &#34;an apple is a fruit and can be eaten by biting directly into it&#34;\nresult: no contradiction\n\nfact: &#34;an apple is a fruit&#34;\ndocument: &#34;an apple is a round fruit and can be eaten by biting directly into it&#34;\nresult: no contradiction\n\nfact: &#34;an apple is a fruit&#34;\ndocument: &#34;an apple is not a fruit&#34;\nresult: contradiction\n\nfact: &#34;an apple can be eaten in 3 different ways: (1) biting, (2) slicing, (3) cutting&#34;\ndocument: &#34;here are two different ways of eating apple: (1) biting and (2) cutting&#34;\nresult: no contradiction, since extra information in fact not mentioned in document\n\nRemember:\n- Your final output must be strictly in the JSON format specified by the output_schema.\n- Double-check your JSON structure before finalizing your response.\n- Do not output any reasoning or justifications.\n&#39;</span>
 
-
+        
     </div>
     <a class="headerlink" href="#FACT_CHECK_PROMPT"></a>
-
-
+    
+    
 
                 </section>
                 <section id="PII_PRESENCE_CHECK_PROMPT">
@@ -248,11 +248,11 @@
 <input id="PII_PRESENCE_CHECK_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
             <label class="view-value-button pdoc-button" for="PII_PRESENCE_CHECK_PROMPT-view-value"></label><span class="default_value">&#39;Check if the following document contains any Personally Identifiable Information (PII).\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\nStructure the output using this json schema:\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n\nDo not output any reasoning or justifications.\n&#39;</span>
 
-
+        
     </div>
     <a class="headerlink" href="#PII_PRESENCE_CHECK_PROMPT"></a>
-
-
+    
+    
 
                 </section>
                 <section id="SUMMARY_PROMPT">
@@ -260,11 +260,11 @@
             <span class="name">SUMMARY_PROMPT</span>        =
 <span class="default_value">&#39;Summarize the following document in no more than 100 words. &lt;document&gt;{document}&lt;/document&gt;&#39;</span>
 
-
+        
     </div>
     <a class="headerlink" href="#SUMMARY_PROMPT"></a>
-
-
+    
+    
 
                 </section>
     </main>

@@ -38,7 +38,8 @@ class DocumentQuality:
         file_path : str
             The path to the document file to be analyzed.
         model_name : str, optional
-            The name of the LLM model to use for analysis, available models: https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName
+            The name of the LLM model to use for analysis, available models:
+            https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName
             by default 'openai:gpt-4o'.
         """
         self.file_path = file_path

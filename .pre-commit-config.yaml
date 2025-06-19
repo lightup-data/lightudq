@@ -4,18 +4,17 @@ repos:
     rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
+        exclude: ^docs/
       - id: trailing-whitespace
+        exclude: ^docs/
       - id: check-json
+        exclude: ^docs/
       - id: pretty-format-json
+        exclude: ^docs/
         args:
         - --autofix
         - --no-sort-keys
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
-    hooks:
-      - id: pyupgrade
-        args: ["--py39-plus"]
 
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.0.1
@@ -37,11 +36,14 @@ repos:
         language_version: python3.9
         args: [--fast]
 
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+  - repo: local
     hooks:
-      - id: prettier
-        types_or: [css, javascript, jsx, ts, tsx]
-        args:
-        - --print-width=88
-        - --trailing-comma=es5
+      - id: pdoc-generate
+        name: Generate pdoc documentation
+        description: Regenerates HTML docs in docs/ and stages changes
+        language: python  # pre‑commit creates a venv & installs deps below
+        entry: bash -c 'pdoc lightudq --output-dir docs && git add docs'
+        # Run only when Python source files change:
+        files: ^(src/|lightudq/)  # tweak to match your layout
+        pass_filenames: false        # we don’t need individual file args
+        require_serial: true         # avoid parallel race conditions
