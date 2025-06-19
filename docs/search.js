@@ -990,7 +990,7 @@ window.pdocSearch = (function () {
           modulename: "lightudq.document_quality",
           qualname: "DocumentQuality.__init__",
           kind: "function",
-          doc: "<p>Initialize the DocumentQuality class.\nArgs:\n  file_path (str): The path to the document file to be analyzed.\n  model_name (str): The name of the LLM model to use for analysis, available models: <a href=\"https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName\">https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName</a>\n  by default 'openai:gpt-4o'.</p>\n",
+          doc: '<p>Initialize the DocumentQuality class.</p>\n\n<h2 id="parameters">Parameters</h2>\n\n<p>file_path : str\n    The path to the document file to be analyzed.\nmodel_name : str, optional\n    The name of the LLM model to use for analysis, available models: <a href="https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName">https://ai.pydantic.dev/api/models/base/#pydantic_ai.models.KnownModelName</a>\n    by default \'openai:gpt-4o\'.</p>\n',
           signature:
             '<span class="signature pdoc-code condensed">(<span class="param"><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;openai:gpt-4o&#39;</span></span>)</span>',
         },
@@ -1652,7 +1652,7 @@ window.pdocSearch = (function () {
           default_value: 0,
           signature: 38,
           bases: 0,
-          doc: 49,
+          doc: 55,
         },
         "lightudq.document_quality.DocumentQuality.file_path": {
           qualname: 3,
@@ -12676,7 +12676,7 @@ window.pdocSearch = (function () {
             "lightudq.document_quality": { tf: 1.7320508075688772 },
             "lightudq.document_quality.DocumentQuality": { tf: 1.4142135623730951 },
             "lightudq.document_quality.DocumentQuality.__init__": {
-              tf: 2.6457513110645907,
+              tf: 3.4641016151377544,
             },
             "lightudq.document_quality.DocumentQuality.file_path": {
               tf: 1.7320508075688772,
@@ -13408,7 +13408,6 @@ window.pdocSearch = (function () {
                 df: 0,
                 s: {
                   docs: {
-                    "lightudq.document_quality.DocumentQuality.__init__": { tf: 1 },
                     "lightudq.schemas.QnAPair": { tf: 1 },
                     "lightudq.schemas.QnAPairs": { tf: 1 },
                     "lightudq.schemas.FactCompare": { tf: 1 },
@@ -13419,7 +13418,7 @@ window.pdocSearch = (function () {
                     "lightudq.schemas.DocumentProfile": { tf: 1 },
                     "lightudq.schemas.DocumentQualityCheckResult": { tf: 1 },
                   },
-                  df: 10,
+                  df: 9,
                 },
               },
             },
@@ -13930,6 +13929,9 @@ window.pdocSearch = (function () {
                             df: 0,
                             s: {
                               docs: {
+                                "lightudq.document_quality.DocumentQuality.__init__": {
+                                  tf: 1,
+                                },
                                 "lightudq.document_quality.DocumentQuality.compare": {
                                   tf: 1,
                                 },
@@ -13951,7 +13953,7 @@ window.pdocSearch = (function () {
                                   tf: 1,
                                 },
                               },
-                              df: 13,
+                              df: 14,
                             },
                           },
                         },
@@ -17531,10 +17533,13 @@ window.pdocSearch = (function () {
                         df: 0,
                         l: {
                           docs: {
+                            "lightudq.document_quality.DocumentQuality.__init__": {
+                              tf: 1,
+                            },
                             "lightudq.document_quality.DocumentQuality.get_response_from_llm":
                               { tf: 1 },
                           },
-                          df: 1,
+                          df: 2,
                         },
                       },
                     },

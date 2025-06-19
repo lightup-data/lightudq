@@ -1,7 +1,7 @@
 [project]
 name = "lightudq"
 version = "0.1.0"
-description = "Add your description here"
+description = "unstructured data quality library"
 readme = "README.md"
 authors = [
     { name = "Sarabjot Singh", email = "sarabjot@lightup.ai" }
