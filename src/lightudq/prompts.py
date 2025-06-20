@@ -1,6 +1,6 @@
 QNA_EXTRACT_PROMPT = """You are an advanced text analysis system designed to extract key
 information from documents in the form of question-answer pairs. Your task is to analyze the given document
-and create up to 5 question-answer pairs based on the information directly addressed in the text.
+and create up to {num_questions} question-answer pairs based on the information directly addressed in the text.
 
 First, carefully read the following document:
 
@@ -130,4 +130,19 @@ SUMMARY_PROMPT = (
     "<document>"
     "{document}"
     "</document>"
+)
+
+
+CUSTOM_METRIC_PROMPT = (
+    "Extract the information requested by the prompt below from the document. "
+    "<document>"
+    "{document}"
+    "</document>"
+    "<prompt>"
+    "{prompt}"
+    "</prompt>"
+    "Structure the output using this json schema:"
+    "<output_schema>"
+    "{output_schema}"
+    "</output_schema>"
 )

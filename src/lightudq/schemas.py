@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Type
 
 from pydantic import BaseModel, Field, NonNegativeInt
 
@@ -76,6 +76,19 @@ class DocumentProfile(BaseModel):
     fileSize: Optional[int] = Field(None, description="size of the file in bytes")
 
 
+class CustomMetric(BaseModel):
+    name: str = Field(..., description="name of the custom metric")
+    prompt: str = Field(..., description="prompt to be used for the custom metric")
+    outputModel: Type[BaseModel] = Field(
+        ..., description="schema of the custom metric output"
+    )
+
+
+class CustomMetricResult(BaseModel):
+    name: str = Field(..., description="name of the custom metric")
+    result: BaseModel = Field(..., description="result of the custom metric")
+
+
 class DocumentQualityCheckResult(BaseModel):
     profile: Optional[DocumentProfile] = Field(
         None, description="the profile of the document"
@@ -92,4 +105,7 @@ class DocumentQualityCheckResult(BaseModel):
     inaccuracy: Optional[InconsistentFacts] = Field(
         None,
         description="facts in the document that are inconsistent with the reference document",
+    )
+    customMetrics: Optional[list[CustomMetricResult]] = Field(
+        None, description="custom metrics computed for the document"
     )

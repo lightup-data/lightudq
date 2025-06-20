@@ -1,17 +1,61 @@
 import os
+from typing import Optional
+
+from pydantic import BaseModel
 
 from lightudq.document_quality import DocumentQuality
+from lightudq.schemas import CustomMetric, QnAPair, QnAPairs
 
 DOC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "doc_samples"))
 
 
 class TestUDQ:
 
+    def test_edit_document_quality(self):
+        dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
+        dq.get_document_profile()
+        dq.profile.qnaPairs = QnAPairs(
+            qna_pairs=[
+                QnAPair(
+                    question="What is Fict.AI known for in the tech industry?",
+                    answer="AI solutions",
+                ),
+                QnAPair(question="Where is Fict.AI located?", answer="Austin, Texas"),
+            ]
+        )
+        res = dq.run()
+        assert res.inconsistency.inconsistent_facts == 0
+        breakpoint()
+
     def test_run_document_quality(self):
         dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
 
+        class CustomMetricOutput(BaseModel):
+            result: Optional[int] = None
+
+        profile = dq.get_document_profile()
+        assert profile.qnaPairs.questions
+        income_metric = CustomMetric(
+            name="income",
+            prompt="what is the net income?",
+            outputModel=CustomMetricOutput,
+        )
+        dq.add_custom_metric(income_metric)
+        revenue_metric = CustomMetric(
+            name="revenue",
+            prompt="what is the revenue?",
+            outputModel=CustomMetricOutput,
+        )
+        dq.add_custom_metric(revenue_metric)
         res = dq.run()
+
         assert res.profile is not None
+        assert res.inconsistency.inconsistent_facts
+        assert len(res.customMetrics) == 2
+        assert res.customMetrics[0].name == "income"
+        assert res.customMetrics[1].name == "revenue"
+        assert res.customMetrics[0].result.result is None
+        assert res.customMetrics[1].result.result is not None
 
     def test_compare(self):
         reference_dq = DocumentQuality(file_path=f"{DOC_DIR}/base_description.pdf")

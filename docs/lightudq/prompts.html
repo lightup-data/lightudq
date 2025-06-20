@@ -45,6 +45,9 @@
             <li>
                     <a class="variable" href="#SUMMARY_PROMPT">SUMMARY_PROMPT</a>
             </li>
+            <li>
+                    <a class="variable" href="#CUSTOM_METRIC_PROMPT">CUSTOM_METRIC_PROMPT</a>
+            </li>
     </ul>
 
 
@@ -68,7 +71,7 @@
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="n">QNA_EXTRACT_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are an advanced text analysis system designed to extract key</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="s2">information from documents in the form of question-answer pairs. Your task is to analyze the given document</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="s2">and create up to 5 question-answer pairs based on the information directly addressed in the text.</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="s2">and create up to </span><span class="si">{num_questions}</span><span class="s2"> question-answer pairs based on the information directly addressed in the text.</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a>
 </span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a><span class="s2">First, carefully read the following document:</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a>
@@ -199,6 +202,21 @@
 </span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>    <span class="s2">&quot;</span><span class="si">{document}</span><span class="s2">&quot;</span>
 </span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>    <span class="s2">&quot;&lt;/document&gt;&quot;</span>
 </span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a><span class="p">)</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="n">CUSTOM_METRIC_PROMPT</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>    <span class="s2">&quot;Extract the information requested by the prompt below from the document. &quot;</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>    <span class="s2">&quot;&lt;document&gt;&quot;</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>    <span class="s2">&quot;</span><span class="si">{document}</span><span class="s2">&quot;</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>    <span class="s2">&quot;&lt;/document&gt;&quot;</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>    <span class="s2">&quot;&lt;prompt&gt;&quot;</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>    <span class="s2">&quot;</span><span class="si">{prompt}</span><span class="s2">&quot;</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>    <span class="s2">&quot;&lt;/prompt&gt;&quot;</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>    <span class="s2">&quot;Structure the output using this json schema:&quot;</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>    <span class="s2">&quot;&lt;output_schema&gt;&quot;</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>    <span class="s2">&quot;</span><span class="si">{output_schema}</span><span class="s2">&quot;</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>    <span class="s2">&quot;&lt;/output_schema&gt;&quot;</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a><span class="p">)</span>
 </span></pre></div>
 
 
@@ -207,7 +225,7 @@
                     <div class="attr variable">
             <span class="name">QNA_EXTRACT_PROMPT</span>        =
 <input id="QNA_EXTRACT_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-            <label class="view-value-button pdoc-button" for="QNA_EXTRACT_PROMPT-view-value"></label><span class="default_value">&#39;You are an advanced text analysis system designed to extract key\ninformation from documents in the form of question-answer pairs. Your task is to analyze the given document\nand create up to 5 question-answer pairs based on the information directly addressed in the text.\n\nFirst, carefully read the following document:\n\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\nThen extract key questions and their corresponding answers from the document.  The answer in each question-answer pair\nshould be self-contained and fully comprehensible without needing to refer back to the question or the original document.\n\nAfter completing your analysis, please format your output as a JSON object that adheres to the following\nschema:\n\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n\n\nRemember:\n- The answer in each question-answer pair  should be self-contained and fully comprehensible without needing to refer\n back to the question or the original document.\n- Your final output must be strictly in the JSON format specified by the output_schema.\n- Double-check your JSON structure before finalizing your response.\n- Do not output any reasoning or justifications\n&#39;</span>
+            <label class="view-value-button pdoc-button" for="QNA_EXTRACT_PROMPT-view-value"></label><span class="default_value">&#39;You are an advanced text analysis system designed to extract key\ninformation from documents in the form of question-answer pairs. Your task is to analyze the given document\nand create up to {num_questions} question-answer pairs based on the information directly addressed in the text.\n\nFirst, carefully read the following document:\n\n&lt;document&gt;\n{document}\n&lt;/document&gt;\n\nThen extract key questions and their corresponding answers from the document.  The answer in each question-answer pair\nshould be self-contained and fully comprehensible without needing to refer back to the question or the original document.\n\nAfter completing your analysis, please format your output as a JSON object that adheres to the following\nschema:\n\n&lt;output_schema&gt;\n{output_schema}\n&lt;/output_schema&gt;\n\n\nRemember:\n- The answer in each question-answer pair  should be self-contained and fully comprehensible without needing to refer\n back to the question or the original document.\n- Your final output must be strictly in the JSON format specified by the output_schema.\n- Double-check your JSON structure before finalizing your response.\n- Do not output any reasoning or justifications\n&#39;</span>
 
         
     </div>
@@ -263,6 +281,19 @@
         
     </div>
     <a class="headerlink" href="#SUMMARY_PROMPT"></a>
+    
+    
+
+                </section>
+                <section id="CUSTOM_METRIC_PROMPT">
+                    <div class="attr variable">
+            <span class="name">CUSTOM_METRIC_PROMPT</span>        =
+<input id="CUSTOM_METRIC_PROMPT-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+            <label class="view-value-button pdoc-button" for="CUSTOM_METRIC_PROMPT-view-value"></label><span class="default_value">&#39;Extract the information requested by the prompt below from the document. &lt;document&gt;{document}&lt;/document&gt;&lt;prompt&gt;{prompt}&lt;/prompt&gt;Structure the output using this json schema:&lt;output_schema&gt;{output_schema}&lt;/output_schema&gt;&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#CUSTOM_METRIC_PROMPT"></a>
     
     
 

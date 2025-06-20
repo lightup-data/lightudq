@@ -69,39 +69,16 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 <pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">lightudq</span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentQuality</span>
 <span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="c1"># profile contains auto generated QnA pairs addressed in the document along with attributes</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{&#39;title&#39;: &#39;corrupt_description.txt&#39;, &#39;wordCount&#39;: 310, &#39;qnaPairs&#39;: {&#39;qna_pairs&#39;: [{&#39;question&#39;: &#39;What is Fict.AI known for in the tech industry?&#39;,</span>
-<span class="sd">&#39;answer&#39;: &#39;Fict.AI is known as an emerging pioneer in the tech industry, primarily driven by advanced AI solutions, and headquartered in the</span>
-<span class="sd">vibrant city of Austin.&#39;}, {&#39;question&#39;: &#39;Who is responsible for overseeing the financial milestones at Fict.AI?&#39;,</span>
-<span class="sd">&#39;answer&#39;: &#39;The CFO, James Smith, is responsible for overseeing the financial milestones at Fict.AI. He has been with</span>
-<span class="sd"> the company since his appointment in 2015 and has over two decades of experience in finance.&#39;}, {&#39;question&#39;: &#39;What is</span>
-<span class="sd"> the revenue of Fict.AI and how is it utilized?&#39;, &#39;answer&#39;: &#39;The revenue of Fict.AI is $100,000. This impressive revenue</span>
-<span class="sd"> allows them to invest aggressively in research and development and indicates a high return on investment.&#39;},</span>
-<span class="sd"> {&#39;question&#39;: &#39;What advantages does the location of Fict.AI provide?&#39;, &#39;answer&#39;: &quot;Fict.AI&#39;s strategic location in Austin</span>
-<span class="sd">  provides easy access to a plethora of tech firms and talent, creating a conducive environment for collaborations and</span>
-<span class="sd">  partnerships.&quot;}, {&#39;question&#39;: &#39;What plans does Fict.AI have for the future?&#39;, &#39;answer&#39;: &#39;Fict.AI plans to steer the</span>
-<span class="sd">  future of AI technology while providing exceptional solutions and transforming the tech industry standard, supported</span>
-<span class="sd">  by their notable revenue of $120,000.&#39;}]}, &#39;summary&#39;: &quot;Fict.AI, based in Austin, is a burgeoning tech industry leader</span>
-<span class="sd">  with a compact team of 12 employees and impressive revenue of $120,000. Their growth is fueled by advanced AI</span>
-<span class="sd">  solutions and a high return on investment, enabling significant investment in research and development. CFO James</span>
-<span class="sd">  Smith, with over two decades of financial experience, has been instrumental in achieving financial stability since</span>
-<span class="sd">  2015. The company&#39;s strategic Austin location fosters partnerships and access to tech talent. Fict.AI&#39;s innovative</span>
-<span class="sd">  strategies and efficient operations position it as a formidable contender in the AI market, setting industry standards.&quot;,</span>
-<span class="sd">   &#39;fileType&#39;: &#39;.txt&#39;, &#39;fileSize&#39;: 2057}&quot;&quot;&quot;</span>
-
+<span class="sd">{&#39;title&#39;: &#39;corrupt_description.txt&#39;, &#39;wordCount&#39;: 310, &#39;qnaPairs&#39;: {&#39;qna_pairs&#39;: [{&#39;question&#39;: &#39;What is Fict.AI known for in the tech industry?&#39;,...}&quot;&quot;&quot;</span>
+<span class="c1"># inconsistency checks if any of the facts in the document contradicts the auto generated QnA pairs</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inconsistency</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{&#39;reasoning&#39;: &#39;The document contains two clear internal contradictions: team size (10 vs 12 employees) and revenue</span>
-<span class="sd">figures ($100,000 vs $120,000). All other facts are either consistent with the document or contain additional information</span>
-<span class="sd"> not mentioned in the document.&#39;, &#39;inconsistent_facts&#39;: 2, &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin,</span>
-<span class="sd">  Texas. There is some inconsistency in the reported team size, with the document mentioning both 10 and 12 employees</span>
-<span class="sd">  at different points.&#39;, &#39;new&#39;: &quot;The document shows an inconsistency in team size, stating both &#39;10 employees&#39; and</span>
-<span class="sd">  &#39;team of only 12&#39;&quot;}, {&#39;original&#39;: &#39;The revenue figures mentioned in the document are inconsistent, with multiple</span>
-<span class="sd">   references to $100,000 throughout the text, but the final paragraph states a revenue of $120,000.&#39;, &#39;new&#39;: &#39;The document</span>
-<span class="sd">   shows inconsistency in revenue figures, mentioning $100,000 multiple times but stating $120,000 in the final paragraph&#39;}]}</span>
+<span class="sd">{inconsistent_facts&#39;: 2, &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin, ....}</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
+<span class="c1"># pii checks if the document contains any personally identifiable information</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">pii</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">{&#39;present&#39;: True, &#39;metadata&#39;: [&#39;Name: James Smith&#39;, &#39;Date of Birth: September 23, 1970&#39;], &#39;count&#39;: 2}</span>
@@ -109,33 +86,60 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 </code></pre>
 </div>
 
-<h3 id="compare-documents-or-versions-of-same-documents">compare documents or versions of same documents</h3>
+<h3 id="add-custom-metrics-to-document-quality-checks">add custom metrics to document quality checks</h3>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">lightudq</span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentQuality</span>
-<span class="n">reference_dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/base_description.pdf&#39;</span><span class="p">)</span>
-<span class="n">reference_profile</span> <span class="o">=</span> <span class="n">reference_dq</span><span class="o">.</span><span class="n">get_document_profile</span><span class="p">()</span>
-<span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">reference_profile</span><span class="o">=</span><span class="n">reference_profile</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">incompleteness</span><span class="p">)</span>
+<pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CustomMetricOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span><span class="kc">None</span>
+
+<span class="n">revenue_metric</span> <span class="o">=</span> <span class="n">CustomMetric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;revenue&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;what is the revenue?&quot;</span><span class="p">,</span> <span class="n">outputModel</span><span class="o">=</span><span class="n">CustomMetricOutput</span><span class="p">)</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">add_custom_metric</span><span class="p">(</span><span class="n">revenue_metric</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">custom_metrics</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{&#39;reasoning&#39;: &#39;The document only mentions revenue figures (with some inconsistency between $100,000 and $120,000) but</span>
-<span class="sd">does not provide any information about net income or profit margins. While it mentions &quot;notable profit numbers,&quot;</span>
-<span class="sd">no specific net income figure is provided. All other questions about headquarters, team size, location benefits, and</span>
-<span class="sd">revenue utilization are clearly answered in the text.&#39;, &#39;questions&#39;: [&quot;What is Fict.AI&#39;s net income for the fiscal year?&quot;]}</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inaccuracy</span><span class="p">)</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{&#39;reasoning&#39;: &#39;Two direct contradictions found: 1) The document states both 10 and 12 employees, with the latter figure</span>
-<span class="sd"> contradicting the original fact. 2) The document mentions $100,000 revenue multiple times but concludes with $120,000,</span>
-<span class="sd"> contradicting the earlier statements and the original fact.&#39;, &#39;inconsistent_facts&#39;: 2,</span>
-<span class="sd"> &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin, Texas and operates with a compact team of 10 employees.&#39;,</span>
-<span class="sd">  &#39;new&#39;: &#39;Even with a team of only 12, the company manages to keep overhead costs low&#39;},</span>
-<span class="sd">  {&#39;original&#39;: &#39;Fict.AI generates a revenue of $100,000 through their advanced AI solutions.&#39;, &#39;new&#39;: &#39;With a noteworthy</span>
-<span class="sd">   revenue of $120,000 under its belt, the company is all set to steer the future of AI technology&#39;}]}</span>
+<span class="sd">{&#39;revenue&#39;: {&#39;result&#39;: 120000}}</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </code></pre>
 </div>
+
+<h3 id="edit-auto-generated-profile-before-running-quality-checks">Edit auto generated profile before running quality checks</h3>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">get_document_profile</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dq</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">qna_pairs=[QnAPair(question=&#39;Where is Fict.AI headquartered?&#39;, answer=&#39;Fict.AI is headquartered in the vibrant city of Austin.&#39;), QnAPair(question=&#39;How much revenue does Fict.AI currently generate?&#39;, answer=&#39;Fict.AI currently generates an impressive revenue of $120,000.&#39;), QnAPair(question=&#39;Who is the CFO of Fict.AI and since when has he been in that position?&#39;, answer=&#39;The CFO of Fict.AI is James Smith, who has been in the position since 2015.&#39;), QnAPair(question=&quot;What factor contributes to Fict.AI&#39;s ability to form collaborations and partnerships?&quot;, answer=&quot;Fict.AI&#39;s strategic location in Austin provides easy access to numerous tech firms and talent, fostering an environment conducive to collaborations and partnerships.&quot;), QnAPair(question=&quot;What significant role does James Smith have in Fict.AI&#39;s success?&quot;, answer=&#39;James Smith, the CFO of Fict.AI, has played a crucial role in financial decision-making and has successfully guided the company to its current financial stability.&#39;)]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1">#edit the profile before running quality checks</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">qnaPairs</span> <span class="o">=</span> <span class="n">QnAPairs</span><span class="p">(</span><span class="n">qna_pairs</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">QnAPair</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;What is Fict.AI known for in the tech industry?&#39;</span><span class="p">,</span> <span class="n">answer</span><span class="o">=</span><span class="s1">&#39;AI solutions&#39;</span><span class="p">),</span>
+    <span class="n">QnAPair</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;Where is Fict.AI located?&#39;</span><span class="p">,</span> <span class="n">answer</span><span class="o">=</span><span class="s1">&#39;Austin, Texas&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="c1"># no inconsistency with new qna pairs</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inconsistency</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">reasoning=None inconsistent_facts=0 metadata=None</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre>
+</div>
+
+<h3 id="compare-documents-or-versions-of-same-documents">compare documents or versions of same documents</h3>
+
+<p>```python
+reference_dq = DocumentQuality(file_path='tests/doc_samples/base_description.pdf')
+reference_profile = reference_dq.get_document_profile()
+dq = DocumentQuality(file_path='tests/doc_samples/corrupt_description.txt')
+res = dq.compare(reference_profile=reference_profile)
+print(res.incompleteness)
+"""
+{'questions': ["What is Fict.AI's net income for the fiscal year?"], ...}
+"""
+print(res.inaccuracy)
+"""
+{'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and operates ....}
+"""</p>
 </div>
 
                         <input id="mod-lightudq-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
