@@ -77,7 +77,7 @@ print(res.incompleteness)
 """
 print(res.inaccuracy)
 """
-{'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and operates ....}
+{'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and ....}
 """
 ```
 

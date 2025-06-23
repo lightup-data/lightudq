@@ -25,6 +25,7 @@
             <ul>
   <li><a href="#installation">Installation</a></li>
   <li><a href="#usage">Usage</a></li>
+  <li><a href="#license">License</a></li>
 </ul>
 
 
@@ -127,19 +128,25 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 
 <h3 id="compare-documents-or-versions-of-same-documents">compare documents or versions of same documents</h3>
 
-<p>```python
-reference_dq = DocumentQuality(file_path='tests/doc_samples/base_description.pdf')
-reference_profile = reference_dq.get_document_profile()
-dq = DocumentQuality(file_path='tests/doc_samples/corrupt_description.txt')
-res = dq.compare(reference_profile=reference_profile)
-print(res.incompleteness)
-"""
-{'questions': ["What is Fict.AI's net income for the fiscal year?"], ...}
-"""
-print(res.inaccuracy)
-"""
-{'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and operates ....}
-"""</p>
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">reference_dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/base_description.pdf&#39;</span><span class="p">)</span>
+<span class="n">reference_profile</span> <span class="o">=</span> <span class="n">reference_dq</span><span class="o">.</span><span class="n">get_document_profile</span><span class="p">()</span>
+<span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">reference_profile</span><span class="o">=</span><span class="n">reference_profile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">incompleteness</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">{&#39;questions&#39;: [&quot;What is Fict.AI&#39;s net income for the fiscal year?&quot;], ...}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inaccuracy</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">{&#39;inconsistent_facts&#39;: 2, &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin, Texas and ....}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre>
+</div>
+
+<h2 id="license">License</h2>
+
+<p>This project is licensed under the MIT License – see the <a href="./LICENSE">LICENSE</a> file for details.</p>
 </div>
 
                         <input id="mod-lightudq-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
