@@ -25,7 +25,6 @@ class TestUDQ:
         )
         res = dq.run()
         assert res.inconsistency.inconsistent_facts == 0
-        breakpoint()
 
     def test_run_document_quality(self):
         dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
