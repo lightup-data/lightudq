@@ -44,6 +44,6 @@ repos:
         language: python  # pre‑commit creates a venv & installs deps below
         entry: bash -c 'pdoc lightudq --output-dir docs && git add docs'
         # Run only when Python source files change:
-        files: ^(src/|lightudq/)  # tweak to match your layout
+        files: ^(src/|lightudq/|README\.md$)  # tweak to match your layout
         pass_filenames: false        # we don’t need individual file args
         require_serial: true         # avoid parallel race conditions
