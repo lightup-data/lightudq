@@ -3,6 +3,7 @@ name: Run Tests
 on:
   pull_request:
     branches: [master]  # or your default branch
+    types: [ ready_for_review ]
     paths:
       - 'src/**'
       - 'tests/**'
