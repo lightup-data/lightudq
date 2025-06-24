@@ -15,11 +15,11 @@ pip install lightudq
 from lightudq import DocumentQuality
 dq = DocumentQuality('tests/doc_samples/corrupt_description.txt')
 res = dq.run()
-# profile contains auto generated QnA pairs addressed in the document along with attributes
+# profile contains auto generated QnA pairs addressed in the document along with document summary
 print(res.profile)
 """
 {'title': 'corrupt_description.txt', 'wordCount': 310, 'qnaPairs': {'qna_pairs': [{'question': 'What is Fict.AI known for in the tech industry?',...}"""
-# inconsistency checks if any of the facts in the document contradicts the auto generated QnA pairs
+# inconsistency checks if there is inconsistency for in the answers of the  auto generated QnA pairs
 print(res.inconsistency)
 """
 {inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, ....}
@@ -32,6 +32,7 @@ print(res.pii)
 ```
 
 ### add custom metrics to document quality checks
+custom metrics can be added to the document quality checks to evaluate specific aspects of the document.
 ```python
 class CustomMetricOutput(BaseModel):
     result: Optional[int] =None
@@ -45,6 +46,8 @@ print(res.custom_metrics)
 """
 ```
 ### Edit auto generated profile before running quality checks
+The auto generated profile can be edited before running the quality checks. This is useful when the auto generated QnA
+pairs are not sufficient or need to be modified.
 ```python
 dq = DocumentQuality('tests/doc_samples/corrupt_description.txt')
 dq.get_document_profile()
@@ -66,15 +69,19 @@ reasoning=None inconsistent_facts=0 metadata=None
 ```
 
 ### compare documents or versions of same documents
+A document can be compared with a reference profile to check for completeness and accuracy. This is useful when
+evaluating different versions of the same document or comparing a document with a reference profile.
 ```python
 reference_dq = DocumentQuality(file_path='tests/doc_samples/base_description.pdf')
 reference_profile = reference_dq.get_document_profile()
 dq = DocumentQuality(file_path='tests/doc_samples/corrupt_description.txt')
 res = dq.compare(reference_profile=reference_profile)
+# questions from the reference profile that are not answered in the current document
 print(res.incompleteness)
 """
 {'questions': ["What is Fict.AI's net income for the fiscal year?"], ...}
 """
+# facts that are inconsistent with the reference profile
 print(res.inaccuracy)
 """
 {'inconsistent_facts': 2, 'metadata': [{'original': 'Fict.AI is headquartered in Austin, Texas and ....}

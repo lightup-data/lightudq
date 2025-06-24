@@ -70,11 +70,11 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 <pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">lightudq</span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentQuality</span>
 <span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="c1"># profile contains auto generated QnA pairs addressed in the document along with attributes</span>
+<span class="c1"># profile contains auto generated QnA pairs addressed in the document along with document summary</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">{&#39;title&#39;: &#39;corrupt_description.txt&#39;, &#39;wordCount&#39;: 310, &#39;qnaPairs&#39;: {&#39;qna_pairs&#39;: [{&#39;question&#39;: &#39;What is Fict.AI known for in the tech industry?&#39;,...}&quot;&quot;&quot;</span>
-<span class="c1"># inconsistency checks if any of the facts in the document contradicts the auto generated QnA pairs</span>
+<span class="c1"># inconsistency checks if there is inconsistency for in the answers of the  auto generated QnA pairs</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inconsistency</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">{inconsistent_facts&#39;: 2, &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin, ....}</span>
@@ -88,6 +88,8 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 </div>
 
 <h3 id="add-custom-metrics-to-document-quality-checks">add custom metrics to document quality checks</h3>
+
+<p>custom metrics can be added to the document quality checks to evaluate specific aspects of the document.</p>
 
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CustomMetricOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -104,6 +106,9 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 </div>
 
 <h3 id="edit-auto-generated-profile-before-running-quality-checks">Edit auto generated profile before running quality checks</h3>
+
+<p>The auto generated profile can be edited before running the quality checks. This is useful when the auto generated QnA
+pairs are not sufficient or need to be modified.</p>
 
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
@@ -128,15 +133,20 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 
 <h3 id="compare-documents-or-versions-of-same-documents">compare documents or versions of same documents</h3>
 
+<p>A document can be compared with a reference profile to check for completeness and accuracy. This is useful when
+evaluating different versions of the same document or comparing a document with a reference profile.</p>
+
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="n">reference_dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/base_description.pdf&#39;</span><span class="p">)</span>
 <span class="n">reference_profile</span> <span class="o">=</span> <span class="n">reference_dq</span><span class="o">.</span><span class="n">get_document_profile</span><span class="p">()</span>
 <span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">reference_profile</span><span class="o">=</span><span class="n">reference_profile</span><span class="p">)</span>
+<span class="c1"># questions from the reference profile that are not answered in the current document</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">incompleteness</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">{&#39;questions&#39;: [&quot;What is Fict.AI&#39;s net income for the fiscal year?&quot;], ...}</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># facts that are inconsistent with the reference profile</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">inaccuracy</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">{&#39;inconsistent_facts&#39;: 2, &#39;metadata&#39;: [{&#39;original&#39;: &#39;Fict.AI is headquartered in Austin, Texas and ....}</span>
