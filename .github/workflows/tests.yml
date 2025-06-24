@@ -1,0 +1,39 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches: [master]  # or your default branch
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Create venv and install project
+        run: |
+          uv sync
+          source .venv/bin/activate
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest

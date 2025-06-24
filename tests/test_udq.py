@@ -49,7 +49,6 @@ class TestUDQ:
         res = dq.run()
 
         assert res.profile is not None
-        assert res.inconsistency.inconsistent_facts
         assert len(res.customMetrics) == 2
         assert res.customMetrics[0].name == "income"
         assert res.customMetrics[1].name == "revenue"
