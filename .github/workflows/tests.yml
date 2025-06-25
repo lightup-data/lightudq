@@ -1,17 +1,17 @@
 name: Run Tests
 
 on:
-  pull_request:
-    branches: [master]  # or your default branch
-    types: [ ready_for_review ]
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 
 jobs:
   test:
     name: run-all-tests
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false # Only run if the PR is not a draft
+
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
