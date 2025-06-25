@@ -31,7 +31,7 @@ print(res.pii)
 """
 ```
 
-### add custom metrics to document quality checks
+### Add custom metrics to document quality checks
 custom metrics can be added to the document quality checks to evaluate specific aspects of the document.
 ```python
 class CustomMetricOutput(BaseModel):
@@ -68,7 +68,7 @@ reasoning=None inconsistent_facts=0 metadata=None
 """
 ```
 
-### compare documents or versions of same documents
+### Compare documents or versions of same documents
 A document can be compared with a reference profile to check for completeness and accuracy. This is useful when
 evaluating different versions of the same document or comparing a document with a reference profile.
 ```python
@@ -91,4 +91,4 @@ print(res.inaccuracy)
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License.
