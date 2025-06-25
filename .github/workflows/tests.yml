@@ -4,16 +4,8 @@ on:
   pull_request:
     branches: [master]  # or your default branch
     types: [ ready_for_review ]
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/**'
   push:
     branches: [ master ]
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/**'
 
 
 jobs:
