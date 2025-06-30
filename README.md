@@ -12,7 +12,7 @@ pip install lightudq
 
 ### Quality check of a document
 ```python
-from lightudq import DocumentQuality
+from lightudq.document_quality import DocumentQuality
 dq = DocumentQuality('tests/doc_samples/corrupt_description.txt')
 res = dq.run()
 # profile contains auto generated QnA pairs addressed in the document along with document summary

@@ -67,7 +67,7 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 <h3 id="quality-check-of-a-document">Quality check of a document</h3>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">lightudq</span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentQuality</span>
+<pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn"><a href="lightudq/document_quality.html">lightudq.document_quality</a></span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentQuality</span>
 <span class="n">dq</span> <span class="o">=</span> <span class="n">DocumentQuality</span><span class="p">(</span><span class="s1">&#39;tests/doc_samples/corrupt_description.txt&#39;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="c1"># profile contains auto generated QnA pairs addressed in the document along with document summary</span>

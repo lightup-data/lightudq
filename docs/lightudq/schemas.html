@@ -58,7 +58,7 @@
                     <a class="class" href="#QnAPairs">QnAPairs</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#QnAPairs.qna_pairs">qna_pairs</a>
+                                <a class="variable" href="#QnAPairs.qnaPairs">qnaPairs</a>
                         </li>
                         <li>
                                 <a class="variable" href="#QnAPairs.questions">questions</a>
@@ -275,17 +275,17 @@
 </span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>
 </span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>
 </span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="k">class</span><span class="w"> </span><span class="nc">QnAPairs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>    <span class="n">qna_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QnAPair</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>    <span class="n">qnaPairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QnAPair</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
 </span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;list of question answer pairs extracted&quot;</span>
 </span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>    <span class="p">)</span>
 </span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>
 </span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>    <span class="nd">@property</span>
 </span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">questions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
 </span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>    <span class="nd">@property</span>
 </span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">answers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>
 </span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
 </span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FactCompare</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -507,17 +507,17 @@ __pydantic_private__: Values of private attributes set on the model instance.
     </div>
     <a class="headerlink" href="#QnAPairs"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="QnAPairs-21"><a href="#QnAPairs-21"><span class="linenos">21</span></a><span class="k">class</span><span class="w"> </span><span class="nc">QnAPairs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="QnAPairs-22"><a href="#QnAPairs-22"><span class="linenos">22</span></a>    <span class="n">qna_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QnAPair</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+</span><span id="QnAPairs-22"><a href="#QnAPairs-22"><span class="linenos">22</span></a>    <span class="n">qnaPairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QnAPair</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
 </span><span id="QnAPairs-23"><a href="#QnAPairs-23"><span class="linenos">23</span></a>        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;list of question answer pairs extracted&quot;</span>
 </span><span id="QnAPairs-24"><a href="#QnAPairs-24"><span class="linenos">24</span></a>    <span class="p">)</span>
 </span><span id="QnAPairs-25"><a href="#QnAPairs-25"><span class="linenos">25</span></a>
 </span><span id="QnAPairs-26"><a href="#QnAPairs-26"><span class="linenos">26</span></a>    <span class="nd">@property</span>
 </span><span id="QnAPairs-27"><a href="#QnAPairs-27"><span class="linenos">27</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">questions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="QnAPairs-28"><a href="#QnAPairs-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="QnAPairs-28"><a href="#QnAPairs-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span><span id="QnAPairs-29"><a href="#QnAPairs-29"><span class="linenos">29</span></a>
 </span><span id="QnAPairs-30"><a href="#QnAPairs-30"><span class="linenos">30</span></a>    <span class="nd">@property</span>
 </span><span id="QnAPairs-31"><a href="#QnAPairs-31"><span class="linenos">31</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">answers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="QnAPairs-32"><a href="#QnAPairs-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="QnAPairs-32"><a href="#QnAPairs-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -555,13 +555,13 @@ __pydantic_private__: Values of private attributes set on the model instance.
 </div>
 
 
-                            <div id="QnAPairs.qna_pairs" class="classattr">
+                            <div id="QnAPairs.qnaPairs" class="classattr">
                                 <div class="attr variable">
-            <span class="name">qna_pairs</span><span class="annotation">: list[<a href="#QnAPair">QnAPair</a>]</span>
+            <span class="name">qnaPairs</span><span class="annotation">: list[<a href="#QnAPair">QnAPair</a>]</span>
 
         
     </div>
-    <a class="headerlink" href="#QnAPairs.qna_pairs"></a>
+    <a class="headerlink" href="#QnAPairs.qnaPairs"></a>
     
     
 
@@ -577,7 +577,7 @@ __pydantic_private__: Values of private attributes set on the model instance.
     <a class="headerlink" href="#QnAPairs.questions"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="QnAPairs.questions-26"><a href="#QnAPairs.questions-26"><span class="linenos">26</span></a>    <span class="nd">@property</span>
 </span><span id="QnAPairs.questions-27"><a href="#QnAPairs.questions-27"><span class="linenos">27</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">questions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="QnAPairs.questions-28"><a href="#QnAPairs.questions-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="QnAPairs.questions-28"><a href="#QnAPairs.questions-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">question</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -595,7 +595,7 @@ __pydantic_private__: Values of private attributes set on the model instance.
     <a class="headerlink" href="#QnAPairs.answers"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="QnAPairs.answers-30"><a href="#QnAPairs.answers-30"><span class="linenos">30</span></a>    <span class="nd">@property</span>
 </span><span id="QnAPairs.answers-31"><a href="#QnAPairs.answers-31"><span class="linenos">31</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">answers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="QnAPairs.answers-32"><a href="#QnAPairs.answers-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qna_pairs</span><span class="p">]</span>
+</span><span id="QnAPairs.answers-32"><a href="#QnAPairs.answers-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">answer</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnaPairs</span><span class="p">]</span>
 </span></pre></div>
 
 

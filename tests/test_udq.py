@@ -15,7 +15,7 @@ class TestUDQ:
         dq = DocumentQuality(file_path=f"{DOC_DIR}/corrupt_description.txt")
         dq.get_document_profile()
         dq.profile.qnaPairs = QnAPairs(
-            qna_pairs=[
+            qnaPairs=[
                 QnAPair(
                     question="What is Fict.AI known for in the tech industry?",
                     answer="AI solutions",
@@ -102,7 +102,7 @@ class TestComputeMetric:
         file_path = f"{DOC_DIR}/base_description.pdf"
         dq = DocumentQuality(file_path=file_path)
         qna = dq.extract_qna()
-        facts = [f.answer for f in qna.qna_pairs]
+        facts = [f.answer for f in qna.qnaPairs]
         fact_check_output = dq.compute_fact_checks(facts=facts)
         assert fact_check_output.inconsistent_facts == 0  # self consistent
 
@@ -110,6 +110,6 @@ class TestComputeMetric:
         dq = DocumentQuality(file_path=file_path)
 
         qna = dq.extract_qna()
-        facts = [f.answer for f in qna.qna_pairs]
+        facts = [f.answer for f in qna.qnaPairs]
         fact_check_output = dq.compute_fact_checks(facts=facts)
         assert fact_check_output.inconsistent_facts > 0  # not self consistent

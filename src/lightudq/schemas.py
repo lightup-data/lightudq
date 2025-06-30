@@ -18,17 +18,17 @@ class QnAPair(BaseModel):
 
 
 class QnAPairs(BaseModel):
-    qna_pairs: list[QnAPair] = Field(
+    qnaPairs: list[QnAPair] = Field(
         ..., description="list of question answer pairs extracted"
     )
 
     @property
     def questions(self):
-        return [q.question for q in self.qna_pairs]
+        return [q.question for q in self.qnaPairs]
 
     @property
     def answers(self):
-        return [a.answer for a in self.qna_pairs]
+        return [a.answer for a in self.qnaPairs]
 
 
 class FactCompare(BaseModel):
