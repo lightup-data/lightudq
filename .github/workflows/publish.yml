@@ -23,8 +23,9 @@ jobs:
 
       - name: Install uv and build tools
         run: |
-          pip install uv
-          uv pip install build twine
+          uv venv
+          source .venv/bin/activate
+          uv add twine
 
       - name: Build package
         run: uv build
@@ -33,4 +34,4 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+        run: uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
