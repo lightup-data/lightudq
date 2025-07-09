@@ -21,9 +21,14 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install uv and build tools
+      - name: Install uv
         run: |
-          uv venv
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Create venv and install project
+        run: |
+          uv sync
           source .venv/bin/activate
           uv add twine
 
