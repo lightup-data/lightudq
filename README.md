@@ -88,6 +88,8 @@ print(res.inaccuracy)
 """
 ```
 
+## API documentation
+For more detailed information on the API, please refer to the [API documentation](https://lightup-data.github.io/lightudq/).
 
 ## License
 
