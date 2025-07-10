@@ -1,6 +1,6 @@
 [project]
 name = "lightudq"
-version = "0.1.2"
+version = "0.1.3"
 description = "assess unstructured data quality"
 readme = "README.md"
 authors = [
