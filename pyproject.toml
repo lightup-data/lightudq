@@ -21,6 +21,14 @@ dependencies = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build]
+exclude = [
+    ".*",            # exclude dotfiles
+    "**/.*",         # recursively exclude dotfiles in subdirectories
+    "tests",        # exclude tests directory
+    "docs",         # exclude docs directory
+]
+
 [dependency-groups]
 dev = [
     "build>=1.2.2.post1",
