@@ -29,6 +29,10 @@ from lightudq.utils import read_document
 load_dotenv()
 
 
+class DuplicateMetricNameError(ValueError):
+    """Raised when the same custom metric is registered twice."""
+
+
 class DocumentQuality:
     """
     Checks the quality of the document
@@ -65,8 +69,8 @@ class DocumentQuality:
             A pydantic model containing the custom metric details.
         """
         if custom_metric.name in [cm.name for cm in self._custom_metrics]:
-            raise ValueError(
-                f"Custom metric with name {custom_metric.name} already exists."
+            raise DuplicateMetricNameError(
+                f"Custom metric {custom_metric.name} already exists."
             )
         self._custom_metrics.append(custom_metric)
 

@@ -7,6 +7,25 @@ analyze documents such as PDFs, text files, and markdowns.
 ```python
 pip install lightudq
 ```
+## Configure your LLM key
+Set the key once – either export it in your shell **or** place it in a `.env` file (auto‑loaded).
+
+| Provider   | Example `model_name`   | Required env variable   |
+|------------|-----------------------|-------------------------|
+| OpenAI     | `openai:gpt-4o`        | `OPENAI_API_KEY`        |
+| Anthropic  | `anthropic:claude-3`   | `ANTHROPIC_API_KEY`     |
+| Cohere     | `cohere:command-r`     | `COHERE_API_KEY`        |
+| Mistral    | `mistral:mixtral-8x22b`| `MISTRAL_API_KEY`       |
+
+```bash
+# Option A – shell export
+export OPENAI_API_KEY="sk-…"
+
+# Option B – .env file in project root
+echo "OPENAI_API_KEY=sk-…" > .env
+```
+
+---
 
 ## Usage
 

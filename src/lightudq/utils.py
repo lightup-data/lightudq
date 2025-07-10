@@ -3,6 +3,10 @@ import os
 import pymupdf
 
 
+class UnsupportedFileTypeError(ValueError):
+    """Raised when the supplied document type is not supported."""
+
+
 def read_markdown_to_text(file_path: str) -> str:
     with open(file_path, encoding="utf-8") as f:
         return f.read()
@@ -30,4 +34,4 @@ def read_document(file_path: str) -> str:
         return read_pdf_to_text(file_path)
     else:
         print(f"Unsupported file format: {file_extension}")
-        return ""
+        raise UnsupportedFileTypeError(file_extension)
