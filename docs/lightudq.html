@@ -24,6 +24,7 @@
             <h2>Contents</h2>
             <ul>
   <li><a href="#installation">Installation</a></li>
+  <li><a href="#configure-your-llm-key">Configure your LLM key</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#api-documentation">API documentation</a></li>
   <li><a href="#license">License</a></li>
@@ -62,6 +63,52 @@ analyze documents such as PDFs, text files, and markdowns.</p>
 <pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">lightudq</span>
 </code></pre>
 </div>
+
+<h2 id="configure-your-llm-key">Configure your LLM key</h2>
+
+<p>Set the key once – either export it in your shell <strong>or</strong> place it in a <code>.env</code> file (auto‑loaded).</p>
+
+<table>
+<thead>
+<tr>
+  <th>Provider</th>
+  <th>Example <code>model_name</code></th>
+  <th>Required env variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>OpenAI</td>
+  <td><code>openai:gpt-4o</code></td>
+  <td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr>
+  <td>Anthropic</td>
+  <td><code>anthropic:claude-3</code></td>
+  <td><code>ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr>
+  <td>Cohere</td>
+  <td><code>cohere:command-r</code></td>
+  <td><code>COHERE_API_KEY</code></td>
+</tr>
+<tr>
+  <td>Mistral</td>
+  <td><code>mistral:mixtral-8x22b</code>| <code>MISTRAL_API_KEY</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="c1"># Option A – shell export</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-…&quot;</span>
+
+<span class="c1"># Option B – .env file in project root</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OPENAI_API_KEY=sk-…&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>.env
+</code></pre>
+</div>
+
+<hr />
 
 <h2 id="usage">Usage</h2>
 
