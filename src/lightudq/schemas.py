@@ -96,7 +96,7 @@ class DocumentQualityCheckResult(BaseModel):
     inconsistency: Optional[InconsistentFacts] = Field(
         None, description="the inconsistencies in the document"
     )
-    pii: PIIPresence = Field(Optional[PIIPresence], description="PII in the document")
+    pii: Optional[PIIPresence] = Field(None, description="PII in the document")
     incompleteness: Optional[MissingQuestions] = Field(
         None, description="missing questions in the document"
     )
