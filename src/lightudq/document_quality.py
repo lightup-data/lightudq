@@ -69,8 +69,9 @@ class DocumentQuality:
             A pydantic model containing the custom metric details.
         """
         if custom_metric.name in [cm.name for cm in self._custom_metrics]:
-            print(f"Custom metric with name {custom_metric.name} already exists.")
-            raise DuplicateMetricNameError(custom_metric.name)
+            raise DuplicateMetricNameError(
+                f"Custom metric {custom_metric.name} already exists."
+            )
         self._custom_metrics.append(custom_metric)
 
     def get_custom_metrics(self) -> list[CustomMetric]:
